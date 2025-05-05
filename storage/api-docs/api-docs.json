@@ -632,6 +632,354 @@
                     }
                 }
             }
+        },
+        "/orders": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Get all orders",
+                "operationId": "325fd3d55bbe9bb39645269928fa4983",
+                "responses": {
+                    "200": {
+                        "description": "Order retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Create a new order",
+                "operationId": "445bab4f7dc9ea6fcd54f286c0209478",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "customer_id",
+                                    "vendor_id",
+                                    "courier_id",
+                                    "tracking_number",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "customer_id": {
+                                        "type": "string"
+                                    },
+                                    "vendor_id": {
+                                        "type": "string"
+                                    },
+                                    "courier_id": {
+                                        "type": "string"
+                                    },
+                                    "tracking_number": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Order created successfully"
+                    }
+                }
+            }
+        },
+        "/orders/{id}": {
+            "get": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Get a specific order",
+                "operationId": "f088d34a2737782215f435f854e31de5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Order retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Order not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Update an order",
+                "operationId": "54c2858108887d7a1252bcc4325158c2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "customer_id",
+                                    "vendor_id",
+                                    "courier_id",
+                                    "tracking_number",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "customer_id": {
+                                        "type": "string"
+                                    },
+                                    "vendor_id": {
+                                        "type": "string"
+                                    },
+                                    "courier_id": {
+                                        "type": "string"
+                                    },
+                                    "tracking_number": {
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Order updated successfully"
+                    },
+                    "404": {
+                        "description": "Order not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Orders"
+                ],
+                "summary": "Delete an order",
+                "operationId": "deb80b1c70721ac0812c9574580984c1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Order deleted successfully"
+                    },
+                    "404": {
+                        "description": "Order not found"
+                    }
+                }
+            }
+        },
+        "/senders": {
+            "get": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Get all senders",
+                "operationId": "a61812f9cfd13a96b48c5201786164fd",
+                "responses": {
+                    "200": {
+                        "description": "Senders retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Create a new sender",
+                "operationId": "31d2ea7d5d90cc7f18ad161cbddd696a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone_number",
+                                    "address"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "john@example.com"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "08123456789"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Merdeka No.1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sender created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/senders/{id}": {
+            "get": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Get a specific sender by ID",
+                "operationId": "1bb71a4163fbd52a1482c799a9c81967",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Sender ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sender retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Sender not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Update a sender",
+                "operationId": "37ec7f851f2b814a370f16e5346e123c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Sender ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone_number",
+                                    "address"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Jane Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "jane@example.com"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "08129876543"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Sudirman No.2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sender updated successfully"
+                    },
+                    "404": {
+                        "description": "Sender not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Delete a sender",
+                "operationId": "90bb50d67a43059ec4d46fc9c056e778",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Sender ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sender deleted successfully"
+                    },
+                    "404": {
+                        "description": "Sender not found"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -673,10 +1021,52 @@
                     }
                 },
                 "type": "object"
+            },
+            "Order": {
+                "title": "Order",
+                "description": "Order model",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Order Name"
+                    }
+                },
+                "type": "object"
+            },
+            "Sender": {
+                "title": "Sender",
+                "description": "Sender model",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Sender Name"
+                    }
+                },
+                "type": "object"
             }
         }
     },
     "tags": [
+        {
+            "name": "Senders",
+            "description": "API Endpoints for Managing Senders"
+        },
         {
             "name": "Category",
             "description": "Category"
@@ -688,6 +1078,10 @@
         {
             "name": "Customers",
             "description": "Customers"
+        },
+        {
+            "name": "Orders",
+            "description": "Orders"
         }
     ]
 }
