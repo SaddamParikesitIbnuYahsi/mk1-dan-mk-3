@@ -1,0 +1,1607 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Dokumentasi Aplikasi",
+        "description": "Dokumentasi REST API untuk aplikasi kamu",
+        "contact": {
+            "email": "support@yourdomain.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "API Utama"
+        }
+    ],
+    "paths": {
+        "/category": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "List of Categories",
+                "description": "Retrieve a list of book categories",
+                "operationId": "listCategory",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "success": true,
+                                    "message": "Successfully retrieved categories",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "name": "Fiction"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "Non-Fiction"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/couriers": {
+            "get": {
+                "tags": [
+                    "Couriers"
+                ],
+                "summary": "Get all couriers",
+                "operationId": "0431baf1d6489ad0059e7efbbeee9c58",
+                "responses": {
+                    "200": {
+                        "description": "Couriers retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Couriers"
+                ],
+                "summary": "Create a new courier",
+                "operationId": "1a23eb41d68e521fdb65083bd2dfd55d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "Name"
+                                ],
+                                "properties": {
+                                    "Name": {
+                                        "type": "string",
+                                        "example": "Jane Doe"
+                                    },
+                                    "LicenseNumber": {
+                                        "type": "string",
+                                        "example": "B1234XYZ"
+                                    },
+                                    "VehicleType": {
+                                        "type": "string",
+                                        "example": "Car"
+                                    },
+                                    "PhoneNumber": {
+                                        "type": "string",
+                                        "example": "082233445566"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Courier created successfully"
+                    }
+                }
+            }
+        },
+        "/couriers/{id}": {
+            "put": {
+                "tags": [
+                    "Couriers"
+                ],
+                "summary": "Update a courier",
+                "operationId": "f2f21f7f912d6566b0c77a1f507eebda",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Courier ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "Name": {
+                                        "type": "string",
+                                        "example": "Jane Updated"
+                                    },
+                                    "LicenseNumber": {
+                                        "type": "string",
+                                        "example": "D4321CBA"
+                                    },
+                                    "VehicleType": {
+                                        "type": "string",
+                                        "example": "Truck"
+                                    },
+                                    "PhoneNumber": {
+                                        "type": "string",
+                                        "example": "085566778899"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Courier updated successfully"
+                    },
+                    "404": {
+                        "description": "Courier not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Couriers"
+                ],
+                "summary": "Delete a courier",
+                "operationId": "ac932b63e8aa13d5d60d65634f421f8d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Courier ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Courier deleted successfully"
+                    },
+                    "404": {
+                        "description": "Courier not found"
+                    }
+                }
+            }
+        },
+        "/customers": {
+            "get": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Get list of customers",
+                "description": "Retrieve a list of all customers registered in the system.",
+                "operationId": "listCustomers",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved customer list",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully retrieved customer list"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Customer"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "An error occurred while retrieving customers."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Store a new customer",
+                "description": "Create a new customer record in the database.",
+                "operationId": "storeCustomer",
+                "requestBody": {
+                    "description": "Customer data to store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Full name of the customer",
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "description": "Email address of the customer",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "phone_number": {
+                                        "description": "Phone number of the customer",
+                                        "type": "string",
+                                        "example": "081234567890",
+                                        "nullable": true
+                                    },
+                                    "address": {
+                                        "description": "Address of the customer",
+                                        "type": "string",
+                                        "example": "Jl. Damai No. 10",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Customer created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Customer created successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Customer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "email": [
+                                                    "The email has already been taken."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "An error occurred while creating the customer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/customers/{id}": {
+            "put": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Update a customer by ID",
+                "description": "Update details of an existing customer by their ID.",
+                "operationId": "updateCustomer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the customer to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Fields to update for the customer",
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Jane Doe Updated",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "janeupdated@example.com",
+                                        "nullable": true
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "081234567890",
+                                        "nullable": true
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Melati No. 10",
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Customer updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Customer updated successfully"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Customer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Customer] 123"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "type": "object",
+                                            "example": {
+                                                "email": [
+                                                    "The email has already been taken."
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "An error occurred while updating the customer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Customers"
+                ],
+                "summary": "Delete a customer by ID",
+                "description": "Delete an existing customer record by its ID.",
+                "operationId": "deleteCustomer",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the customer to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64",
+                            "example": 1
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Customer deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Customer not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No query results for model [App\\\\Models\\\\Customer] 123"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict (Could be associated with other data, e.g., orders)",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed to delete customer. It might be associated with existing orders or packages."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "An error occurred while deleting the customer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/packages": {
+            "get": {
+                "tags": [
+                    "Packages"
+                ],
+                "summary": "Get all packages",
+                "operationId": "d09b9ef6ed46b5c4f8e680afbc23b8e3",
+                "responses": {
+                    "200": {
+                        "description": "Packages retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Packages"
+                ],
+                "summary": "Create a new package",
+                "operationId": "c393ac414f125f39ed06f3abeeb4308e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "SenderID",
+                                    "CustomerID",
+                                    "weight",
+                                    "package_type",
+                                    "shipping_cost",
+                                    "receipt_date"
+                                ],
+                                "properties": {
+                                    "SenderID": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "CustomerID": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "weight": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 2.5
+                                    },
+                                    "package_type": {
+                                        "type": "string",
+                                        "example": "Box"
+                                    },
+                                    "shipping_cost": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 25000
+                                    },
+                                    "receipt_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-05-26"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Package created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/packages/{id}": {
+            "put": {
+                "tags": [
+                    "Packages"
+                ],
+                "summary": "Update a package",
+                "operationId": "31121c1278670481ee6e92b8ae1c7497",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Package ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "SenderID": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "CustomerID": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "weight": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 3
+                                    },
+                                    "package_type": {
+                                        "type": "string",
+                                        "example": "Envelope"
+                                    },
+                                    "shipping_cost": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": 15000
+                                    },
+                                    "receipt_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-05-27"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Package updated successfully"
+                    },
+                    "404": {
+                        "description": "Package not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Packages"
+                ],
+                "summary": "Delete a package",
+                "operationId": "38718113909921c59043663af143d1ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Package ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Package deleted successfully"
+                    },
+                    "404": {
+                        "description": "Package not found"
+                    }
+                }
+            }
+        },
+        "/senders": {
+            "get": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Get all senders",
+                "operationId": "11baf580c627cbea837b37b144fcf318",
+                "responses": {
+                    "200": {
+                        "description": "Senders retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Create a new sender",
+                "operationId": "f159096f7bbda9c1fc6712ca88ebd284",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone_number",
+                                    "address"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "john@example.com"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "08123456789"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Merdeka No.1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Sender created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/senders/{id}": {
+            "put": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Update a sender",
+                "operationId": "daff7d424df2cc792b4a610f60244b7b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Sender ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "phone_number",
+                                    "address"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Jane Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "jane@example.com"
+                                    },
+                                    "phone_number": {
+                                        "type": "string",
+                                        "example": "08129876543"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Sudirman No.2"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sender updated successfully"
+                    },
+                    "404": {
+                        "description": "Sender not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Senders"
+                ],
+                "summary": "Delete a sender",
+                "operationId": "1b4e43de0d078b9b3d3584e86fef5108",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Sender ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Sender deleted successfully"
+                    },
+                    "404": {
+                        "description": "Sender not found"
+                    }
+                }
+            }
+        },
+        "/shipments": {
+            "get": {
+                "tags": [
+                    "Shipments"
+                ],
+                "summary": "Get all shipments",
+                "operationId": "1b7add381c49e5799e918addb4bf5cfb",
+                "responses": {
+                    "200": {
+                        "description": "Shipments retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Shipments"
+                ],
+                "summary": "Create a new shipment",
+                "operationId": "a99d4d8cb115236b7341489bea598e25",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "package_id",
+                                    "vendor_id",
+                                    "courier_id",
+                                    "tracking_number",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "package_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "vendor_id": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "courier_id": {
+                                        "type": "integer",
+                                        "example": 3
+                                    },
+                                    "tracking_number": {
+                                        "type": "string",
+                                        "example": "TRK123456"
+                                    },
+                                    "delivery_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-06-01"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "On Delivery"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Shipment created successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/shipments/{id}": {
+            "put": {
+                "tags": [
+                    "Shipments"
+                ],
+                "summary": "Update a shipment",
+                "operationId": "2795e73ce3d9263e7f399677b0236f8a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shipment ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "tracking_number": {
+                                        "type": "string",
+                                        "example": "TRK12345678"
+                                    },
+                                    "delivery_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2025-06-02"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Delivered"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Shipment updated successfully"
+                    },
+                    "404": {
+                        "description": "Shipment not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Shipments"
+                ],
+                "summary": "Delete a shipment",
+                "operationId": "1819669dd5f5e31f2a0b9d6025c5199e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Shipment ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Shipment deleted successfully"
+                    },
+                    "404": {
+                        "description": "Shipment not found"
+                    }
+                }
+            }
+        },
+        "/vendors": {
+            "get": {
+                "tags": [
+                    "Vendors"
+                ],
+                "summary": "Get all vendors",
+                "operationId": "fec9c5c6b882cb0890a49155195b078f",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "List of vendors retrieved successfully."
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Vendor"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Vendors"
+                ],
+                "summary": "Create new vendor",
+                "operationId": "8e357a939bb354c4596dbdc8ca3fea4a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "business_name"
+                                ],
+                                "properties": {
+                                    "business_name": {
+                                        "type": "string",
+                                        "example": "CV Maju Jaya"
+                                    },
+                                    "license_number": {
+                                        "type": "string",
+                                        "example": "LN-12345"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Merdeka No. 10, Jakarta"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Vendor created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Vendor created successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Vendor"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/vendors/{id}": {
+            "put": {
+                "tags": [
+                    "Vendors"
+                ],
+                "summary": "Update a vendor",
+                "operationId": "85f995551be21466cd6f0aaf9b91b452",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vendor ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "business_name": {
+                                        "type": "string",
+                                        "example": "CV Maju Lancar"
+                                    },
+                                    "license_number": {
+                                        "type": "string",
+                                        "example": "LN-54321"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Jl. Veteran No. 5, Bandung"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Vendor updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Vendor updated successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Vendor"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Vendor not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Vendors"
+                ],
+                "summary": "Delete a vendor",
+                "operationId": "c68973876216b6a67c73edacf00a6379",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vendor ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Vendor deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Vendor deleted successfully."
+                                        },
+                                        "data": {
+                                            "type": "string",
+                                            "example": null,
+                                            "nullable": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Vendor not found"
+                    },
+                    "409": {
+                        "description": "Conflict – vendor has dependencies"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login user dan dapatkan token Sanctum",
+                "description": "Login user dan dapatkan token Sanctum.",
+                "operationId": "loginUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "secret"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "1|abcde12345..."
+                                        },
+                                        "user": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "John Doe"
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "example": "user@example.com"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validasi gagal",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Courier": {
+                "title": "Courier",
+                "description": "Courier model",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Courier Name"
+                    }
+                },
+                "type": "object"
+            },
+            "Customer": {
+                "title": "Customer",
+                "description": "Customer model",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Customer Name"
+                    }
+                },
+                "type": "object"
+            },
+            "Package": {
+                "title": "Package",
+                "description": "Package model",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Package Name"
+                    }
+                },
+                "type": "object"
+            },
+            "Sender": {
+                "title": "Sender",
+                "description": "Sender model",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Sender Name"
+                    }
+                },
+                "type": "object"
+            },
+            "Shipment": {
+                "title": "Shipment",
+                "description": "Shipment model",
+                "required": [
+                    "id",
+                    "tracking_number",
+                    "sender_name",
+                    "receiver_name",
+                    "status",
+                    "created_at"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "tracking_number": {
+                        "type": "string",
+                        "example": "TRK123456789"
+                    },
+                    "sender_name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "receiver_name": {
+                        "type": "string",
+                        "example": "Jane Smith"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "In Transit"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-06-03T10:15:30Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2025-06-03T12:00:00Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Vendor": {
+                "title": "Vendor",
+                "description": "Vendor model",
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Vendor Name"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Masukkan token dengan format: Bearer {token}"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Couriers",
+            "description": "API Endpoints for Managing Couriers"
+        },
+        {
+            "name": "Packages",
+            "description": "API Endpoints for Managing Packages"
+        },
+        {
+            "name": "Senders",
+            "description": "API Endpoints for Managing Senders"
+        },
+        {
+            "name": "Shipments",
+            "description": "API Endpoints for Managing Shipments"
+        },
+        {
+            "name": "Vendors",
+            "description": "API for managing vendors"
+        },
+        {
+            "name": "Auth",
+            "description": "Endpoints untuk autentikasi"
+        },
+        {
+            "name": "Category",
+            "description": "Category"
+        },
+        {
+            "name": "Customers",
+            "description": "Customers"
+        }
+    ],
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}
